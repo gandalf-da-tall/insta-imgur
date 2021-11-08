@@ -1,0 +1,41 @@
+.pcContainer {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.sideA {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.fullSize {
+  width: 100%;
+}
+.sideB {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+
+.scroll {
+  overflow-y: scroll;
+  height: 30rem;
+}
+
+.compFooter {
+  border-style: none;
+}
+
+.commentGroup {
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+}
+
+.commentItem {
+  padding-right: 10px;
+  word-wrap: break-word;
+  overflow: hidden;
+}
+
+.titleHeader {
+  border-bottom: none;
+}
