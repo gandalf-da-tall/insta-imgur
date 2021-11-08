@@ -21,10 +21,15 @@ import os
 SECRET_KEY = 'django-insecure-j$78v^y19$!e3--kiwyifrg9v(rzf5hra_n%)de%+!nzlt)bm6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'pdl-insta-imgur.herokuapp.com']
 
+REST_FRAMEWORK = {
+  'DEFAULT_AUTHENTICATION_CLASSES': (
+    'rest_framework.authentication.BasicAuthentication',
+   )
+}
 
 # Application definition
 
@@ -44,9 +49,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    
     'corsheaders.middleware.CorsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-
+    
+'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,6 +60,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -92,7 +99,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'instaimgur',
         "USER": 'trevorgarrett',
-        'PASSWORD': '12qwaszx+1',
+        'PASSWORD':  os.environ.get('DB_PASS'),
         'HOST': 'insta-imgur-identifier.culujsrcupih.us-east-2.rds.amazonaws.com',
         'PORT': '5432'
     }
@@ -147,10 +154,12 @@ CORS_ALLOW_ALL_ORIGINS = True
 AWS_QUERYSTRING_AUTH = 'false'
 AWS_S3_SIGNATURE_VERSION = 's3'
 AWS_S3_CUSTOM_DOMAIN = 'instaimgur-bucket.s3.amazonaws.com'
-AWS_ACCESS_KEY_ID = 'AKIAQKCKFYTYC2G3FY6M'
-AWS_SECRET_ACCESS_KEY = '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'
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = 'instaimgur-bucket'
 
+if os.getcwd() == '/app': 
+    DEBUG: False
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
