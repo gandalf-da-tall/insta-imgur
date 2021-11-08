@@ -1,1 +1,1 @@
-web: gunicorn insta-imgur.wsgi --log-file -
+web: gunicorn backend.wsgi --log-file -
